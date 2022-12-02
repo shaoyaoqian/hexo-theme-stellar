@@ -18,6 +18,15 @@ let heti = '';
 if (theme.plugins.heti && theme.plugins.heti.enable) {
   heti = ' heti';
 }
+let content = post.content;
+if (theme.sensitive_words == undefined) {
+}
+else {
+  for (let key of Object.keys(theme.sensitive_words)) {
+      let value = theme.sensitive_words[key];
+      content = content.replaceAll(key, value);
+  }
+}
 %>
 <% if (page.mathjax == true){ %>
     <%- partial('mathjax') %>
@@ -25,7 +34,7 @@ if (theme.plugins.heti && theme.plugins.heti.enable) {
 <%- partial('_partial/main/navbar/breadcrumb') %>
 <article class='md-text content<%- heti %> <%- post.layout %><%- post.indent ? ' indent' : '' %><%- scrollreveal() %>'>
 <%- layoutTitle() %>
-<%- post.content %>
+<%- content %>
 <%- partial('_partial/main/article/article_footer') %>
 </article>
 <%- partial('_partial/main/article/read_next') %>
