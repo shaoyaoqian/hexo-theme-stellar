@@ -244,6 +244,7 @@ plugins:
     linkcard: /js/plugins/linkcard.js
     fcircle: /js/plugins/fcircle.js
     weibo: /js/plugins/weibo.js
+    netease: /js/plugins/netease.js
 
   marked: https://cdn.bootcdn.net/ajax/libs/marked/4.0.18/marked.min.js
   
