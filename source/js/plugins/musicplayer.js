@@ -2,7 +2,7 @@
 // 要确保引入了https://unpkg.com/flyio/dist/umd/fly.umd.min.js文件
 console.log("stellar-musicplayer");
 var fly=new Fly();
-url_base = "https://netease.pengfeima.cn"
+url_base = stellar.plugins.musicplayer.netease
 
 const NeteaseMusicAPI = {
   download_lyric: async(id) => {
@@ -78,35 +78,29 @@ const NeteaseMusicAPI = {
     var id_list = cfg.song_id.split(',');
     for (var i = 0; i < id_list.length; i++) {
       var id = id_list[i];
-      console.log(id);
-      // 资源是异步获取的
+      // WARN：资源是异步获取的
       var lyric = NeteaseMusicAPI.download_lyric(id);
       var detail = NeteaseMusicAPI.download_song_detail(id);
       var url = NeteaseMusicAPI.download_song_url(id);
-
       var single_song = {};
-      // url.then((song_url)=>{
-      //   single_song['url'] = song_url;
-        
-      // });
-      single_song['url'] = await url;
+      // WARN：获取了资源链接以后才能使用aplayer
       var details = await detail;
       single_song['name'] = details['name'];
       single_song['artist'] = details['singer'];
       single_song['cover'] = details['pic'];
+      single_song['url'] = await url;
       single_song['lrc'] = await lyric;
-      
       audio.push(single_song);
     }
-    console.log(audio);
     const ap = new APlayer({
       container: document.getElementById(cfg.id),
       mini: false,
-      autoplay: false,
+      fixed: false,
+      autoplay: true,
       theme: '#0899c4',
       loop: 'all',
       order: 'random',
-      preload: 'auto',
+      preload: 'metadata',
       volume: 0.7,
       mutex: true,
       listFolded: true,
@@ -115,74 +109,70 @@ const NeteaseMusicAPI = {
       audio: audio
     });
   },
+  layoutDiv_local: async(cfg) => {
+    var audio = [];
+    var els = cfg.el.getElementsByTagName('div');
+    for (var i = 0; i < els.length; i++) {
+      const el = els[i];
+      var single_song = {};
+      single_song['name'] = el.getAttribute('name');
+      single_song['artist'] = el.getAttribute('artist');
+      single_song['cover'] = el.getAttribute('cover');
+      single_song['url'] = el.getAttribute('url');
+      single_song['lrc'] = el.getAttribute('lrc');
+      audio.push(single_song);
+    }
+    const ap = new APlayer({
+      container: document.getElementById(cfg.id),
+      mini: false,
+      fixed: false,
+      autoplay: true,
+      theme: '#0899c4',
+      loop: 'all',
+      order: 'random',
+      preload: 'metadata',
+      volume: 0.7,
+      mutex: true,
+      listFolded: true,
+      listMaxHeight: 90,
+      lrcType: 3,
+      audio: audio
+    });
+  }
 }
 
 // <div class='stellar-musicplayer' song_id='436147423'>
 $(function () {
   const els = document.getElementsByClassName('stellar-musicplayer');
-  console.log("stellar-musicplayer");
-  console.log("els.length",els.length);
+  console.log("number of players : ",els.length);
 
   for (var i = 0; i < els.length; i++) {
     const el = els[i];
 
     const song_id = el.getAttribute('song_id');
     const id = el.getAttribute('id');
+    const from = el.getAttribute('from');
 
-    if (song_id == null || id == null) {
-      console.log("no id or no song_id");
+    if (id == null) {
+      console.log("no id");
       continue;
     }
-
-    var cfg = new Object();
-    cfg.id = id;
-    cfg.el = el;
-    cfg.song_id = song_id;
-    NeteaseMusicAPI.layoutDiv(cfg);
+    if (from == 'local') {
+      var cfg = new Object();
+      cfg.id = id;
+      cfg.el = el;
+      cfg.song_id = song_id;
+      NeteaseMusicAPI.layoutDiv_local(cfg);
+    } else if (from == 'netease') {
+      if (song_id == null) {
+        console.log("need song_id to fetch remote resources.");
+        continue;
+      }
+      var cfg = new Object();
+      cfg.id = id;
+      cfg.el = el;
+      cfg.song_id = song_id;
+      NeteaseMusicAPI.layoutDiv(cfg);
+    }
   }
 });
-
-// audio.push({
-//   url: '//raw.githubusercontent.com/shaoyaoqian/images-1/main/music/29818028.mp3',
-//   cover: 'http://qiniu.pengfeima.cn/typora/202212062310206.jpg',
-//   lrc: 'https://raw.githubusercontent.com/shaoyaoqian/images-1/main/music/29818028.lrc',
-//   name: 'Rainy Mood',
-//   artist: 'www.rainymood.com',
-// });
-// audio.push({
-//   url: 'https://raw.githubusercontent.com/shaoyaoqian/images-1/main/music/1309394503.mp3',
-//   cover: 'https://raw.githubusercontent.com/shaoyaoqian/images-1/main/music/1309394503.png',
-//   lrc: 'https://raw.githubusercontent.com/shaoyaoqian/images-1/main/music/1309394503.lrc',
-//   name: 'The White Lady',
-//   artist: 'Christopher Larkin',
-// });
-// audio.push(
-// {
-//   url: 'https://raw.githubusercontent.com/shaoyaoqian/images-1/main/music/1974443814.mp3',
-//   cover: 'https://raw.githubusercontent.com/shaoyaoqian/images-1/main/music/1974443814.png',
-//   lrc: 'https://raw.githubusercontent.com/shaoyaoqian/images-1/main/music/1974443814.lrc',
-//   name: '我记得',
-//   artist: '赵雷',
-// });
-// audio.push({
-//   url: 'https://raw.githubusercontent.com/shaoyaoqian/images-1/main/music/453927794.mp3',
-//   cover: 'https://raw.githubusercontent.com/shaoyaoqian/images-1/main/music/453927794.png',
-//   lrc: 'https://raw.githubusercontent.com/shaoyaoqian/images-1/main/music/453927794.lrc',
-//   name: '如何',
-//   artist: '张悬',
-// });
-// audio.push({
-//   url: 'https://raw.githubusercontent.com/shaoyaoqian/images-1/main/music/26590191.mp3',
-//   cover: 'https://raw.githubusercontent.com/shaoyaoqian/images-1/main/music/26590191.png',
-//   lrc: 'https://raw.githubusercontent.com/shaoyaoqian/images-1/main/music/26590191.lrc',
-//   name: '留下来陪你生活',
-//   artist: '张悬',
-// });
-// audio.push({
-//   url: 'https://raw.githubusercontent.com/shaoyaoqian/images-1/main/music/453927771.mp3',
-//   cover: 'https://raw.githubusercontent.com/shaoyaoqian/images-1/main/music/453927771.png',
-//   lrc: 'https://raw.githubusercontent.com/shaoyaoqian/images-1/main/music/453927771.lrc',
-//   name: '喜欢',
-//   artist: '张悬',
-// });
-
