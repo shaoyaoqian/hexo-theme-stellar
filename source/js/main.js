@@ -263,10 +263,12 @@ if (stellar.plugins.swiper) {
   if (swiper_api != undefined) {
     stellar.loadCSS(stellar.plugins.swiper.css);
     stellar.loadScript(stellar.plugins.swiper.js, { defer: true }).then(function () {
-      var swiper = new Swiper('.swiper-container', {
+      const effect = swiper_api.getAttribute('effect') || '';
+      var swiper = new Swiper('.swiper#swiper-api', {
         slidesPerView: 'auto',
         spaceBetween: 8,
         centeredSlides: true,
+        effect: effect,
         loop: true,
         pagination: {
           el: '.swiper-pagination',
@@ -331,7 +333,7 @@ if (stellar.search.service) {
         var $inputArea = $("input#search-input");
         var $resultArea = document.querySelector("div#search-result");
         $inputArea.focus(function() {
-          var path = stellar.search[stellar.search.service]?.path || '/search.xml';
+          var path = stellar.search[stellar.search.service]?.path || '/search.json';
           if (!path.startsWith('/')) {
             path = '/' + path;
           }

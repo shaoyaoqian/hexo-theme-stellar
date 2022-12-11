@@ -1,6 +1,6 @@
 ######## Stellar info ########
 stellar:
-  version: '1.17.0'
+  version: '1.18.0'
   homepage: 'https://xaoxuu.com/wiki/stellar/'
   repo: 'https://github.com/xaoxuu/hexo-theme-stellar'
   cdn_css: # Use cdn links instead of /css/main.css
@@ -25,10 +25,22 @@ sidebar:
     # about: '[关于](/about/)'
   # Sidebar widgets
   widgets:
-    index: welcome, recent, search, timeline # for home/wiki/categories/tags/archives/404 pages
-    page: welcome, toc # for pages using 'layout:page'
-    post: toc, ghrepo, search, ghissues # for pages using 'layout:post'
+    #### 自动生成的页面 ####
+    # 主页
+    home: search, recent, timeline # for home
+    # 博客索引页
+    blog_index: search_blog, recent, timeline # for categories/tags/archives
+    # 文档索引页
+    wiki_index: search_docs, recent, timeline # for wiki
+    # 其它（404）
+    others: search, recent, timeline # for 404 and ...
+    #### 手动创建的页面 ####
+    # 文章内页
+    post: search_blog, toc, ghrepo, ghissues # for pages using 'layout:post'
+    # 文档内页
     wiki: search, ghrepo, toc, ghissues, related # for pages using 'layout:wiki'
+    # 其它 layout:page 的页面
+    page: toc, search # for custom pages using 'layout:page'
 
 ######## Index ########
 post-index: # 近期发布 分类 标签 归档 and ...
@@ -62,13 +74,17 @@ article:
 
 
 search:
-  service: local_search # hexo, todo...
-  local_search: # npm i hexo-generator-search
+  service: local_search # local_search, todo...
+  local_search: # 在 front-matter 中设置 indexing:false 来避免被搜索索引
+    field: all # post, page, all
+    path: /search.json # 搜索文件存放位置
+    content: true # 是否搜索内容
+    codeblock: true # 是否搜索代码块（需要content: true)
   
 
 ######## Comments ########
 comments:
-  service: # beaudar, utterances, twikoo, waline
+  service: # beaudar, utterances, giscus, twikoo, waline, artalk
   # beaudar
   # https://beaudar.lipk.org/
   beaudar:
@@ -112,22 +128,18 @@ comments:
   twikoo:
     js: https://fastly.jsdelivr.net/npm/twikoo@1.4.0/dist/twikoo.all.min.js # 建议锁定版本
     envId: https://xxx # vercel函数
+  
+  # Waline
+  # https://waline.js.org/
   waline:
     js: https://unpkg.com/@waline/client@v2/dist/waline.js
     css: https://unpkg.com/@waline/client@v2/dist/waline.css
     # Waline server address url, you should set this to your own link
     serverURL:
-
     # If false, comment count will only be displayed in post page, not in home page
     commentCount: true
-
     # Pageviews count, Note: You should not enable both `waline.pageview` and `leancloud_visitors`.
     pageview: false
-
-    # Custom locales
-    # locale:
-    #   placeholder: Welcome to comment # Comment box placeholder
-
     # Custom emoji
     # emoji:
     #   - https://unpkg.com/@waline/emojis@1.1.0/weibo
@@ -137,28 +149,16 @@ comments:
     #   - https://unpkg.com/@waline/emojis@1.1.0/tieba
     #   - https://unpkg.com/@waline/emojis@1.1.0/tw-emoji
     #   - https://unpkg.com/@waline/emojis@1.1.0/bmoji
+  
+  # Artalk
+  # https://artalk.js.org/
+  artalk:
+    css: https://unpkg.com/artalk@2.4.3/dist/Artalk.css
+    js: https://unpkg.com/artalk@2.4.3/dist/Artalk.js 
+    server: # 后端服务地址
+    placeholder: ''
+    darkMode: auto
 
-    # Comment infomation, valid meta are nick, mail and link
-    # meta:
-    #   - nick
-    #   - mail
-    #   - link
-
-    # Set required meta field, e.g.: [nick] | [nick, mail]
-    # requiredMeta:
-    #   - nick
-
-    # Language, available values: en-US, zh-CN, zh-TW, pt-BR, ru-RU, jp-JP
-    # lang: zh-CN
-
-    # Word limit, no limit when setting to 0
-    # wordLimit: 0
-
-    # Whether enable login, can choose from 'enable', 'disable' and 'force'
-    # login: enable
-
-    # comment per page
-    # pageSize: 10
 
 ######## Footer ########
 footer:
@@ -227,6 +227,9 @@ tag_plugins:
   # {% mark %}
   mark:
     default_color: dark # light, dark, red, orange, yellow, green, cyan, blue, purple, warning, error
+  # {% tag %}
+  tag:
+    default_color: yellow # red, orange, yellow, green, cyan, blue, purple
 
 
 ######## JS Plugins ########
@@ -297,8 +300,8 @@ plugins:
   # swiper
   swiper:
     enable: true
-    css: https://unpkg.com/swiper@6/swiper-bundle.min.css
-    js: https://unpkg.com/swiper@6/swiper-bundle.min.js
+    css: https://unpkg.com/swiper@8/swiper-bundle.min.css
+    js: https://unpkg.com/swiper@8/swiper-bundle.min.js
 
 
   # 赫蹏 (Heti) - 专为中文网页内容设计的排版样式增强
@@ -335,27 +338,17 @@ style:
     code: 'Menlo, Monaco, Consolas, system-ui, "Courier New", monospace, sans-serif'
   text-align: left
   color:
-    common:
-      theme: '#1BCDFC' # 主题色
-      accent: '#ff5722' # 强调色
-      link: '#2196f3' # 超链接颜色
-      button: '#1BCDFC' # 按钮颜色
-      hover: '#ff5722' # 按钮高亮颜色
-    light:
-      background: '#F8F9FA' # 浅色背景颜色
-      block: '#F0F1F2' # 块背景颜色
-      card: white # 卡片背景颜色
-      title: '#000' # 标题文本颜色
-      text: '#333' # 正文文本颜色
-      code: '#f33a00' # 行内代码颜色
-    dark:
-      background: '#313438' # 深色背景颜色
-      background-mobile: black # 移动端深色背景（OLED调成纯黑可以省电）
-      block: '#2B2F33' # 块背景颜色
-      card: '#464D57' # 卡片背景颜色
-      title: '#fff' # 标题文本颜色
-      text: '#eee' # 正文文本颜色
-      code: '#ff7043' # 行内代码颜色
+    # 动态颜色（会根据明暗主题重设明度值，只用关心色相和饱和度即可）
+    background: 'hsl(212 16% 98%)' # 浅色背景颜色
+    block: 'hsl(212 8% 95%)' # 块背景颜色
+    code: 'hsl(14 100% 48%)' # 行内代码颜色
+    text: 'hsl(0 0% 20%)' # 文本颜色
+    # 主题色配置（不会根据明暗动态调整，请设置为通用的颜色）
+    theme: 'hsl(192 98% 55%)' # 主题色
+    accent: 'hsl(14 100% 57%)' # 强调色
+    link: 'hsl(207 90% 54%)' # 超链接颜色
+    button: 'hsl(192 98% 55%)' # 按钮颜色
+    hover: 'hsl(14 100% 57%)' # 按钮高亮颜色
   animated_avatar:
     animate: auto # auto, always
     background: https://fastly.jsdelivr.net/gh/cdn-x/placeholder@1.0.2/avatar/round/rainbow64@3x.webp

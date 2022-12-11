@@ -1,31 +1,17 @@
 @require('_defines/const')
 
 // 通用主题色
-$color-theme = convert(hexo-config('style.color.common.theme'))
-$color-accent = convert(hexo-config('style.color.common.accent'))
-$color-link = convert(hexo-config('style.color.common.link'))
-$color-button = convert(hexo-config('style.color.common.button'))
-$color-hover = convert(hexo-config('style.color.common.hover'))
+$color-theme = convert(hexo-config('style.color.theme'))
+$color-accent = convert(hexo-config('style.color.accent'))
+$color-link = convert(hexo-config('style.color.link'))
+$color-button = convert(hexo-config('style.color.button'))
+$color-hover = convert(hexo-config('style.color.hover'))
 
-// 浅色
-$light-background = convert(hexo-config('style.color.light.background'))
-$light-block = convert(hexo-config('style.color.light.block'))
-$light-card = convert(hexo-config('style.color.light.card'))
-$light-title = convert(hexo-config('style.color.light.title'))
-$light-text = convert(hexo-config('style.color.light.text'))
-$light-code = convert(hexo-config('style.color.light.code'))
-
-// 深色
-$dark-background = convert(hexo-config('style.color.dark.background'))
-$dark-block = convert(hexo-config('style.color.dark.block'))
-$dark-card = convert(hexo-config('style.color.dark.card'))
-$dark-title = convert(hexo-config('style.color.dark.title'))
-$dark-text = convert(hexo-config('style.color.dark.text'))
-$dark-code = convert(hexo-config('style.color.dark.code'))
-
-// 移动端深色背景（OLED调成纯黑可以省电）
-$dark-background-mobile = convert(hexo-config('style.color.dark.background-mobile'))
-
+// 动态颜色
+$color-background = convert(hexo-config('style.color.background'))
+$color-block = convert(hexo-config('style.color.block'))
+$color-code = convert(hexo-config('style.color.code'))
+$color-text = convert(hexo-config('style.color.text'))
 
 // @font-face
 //   font-family: 'Dosis'
@@ -55,7 +41,7 @@ $fs-13 = .8125rem
 $fs-12 = .75rem
 
 $fs-h1   = 1.75rem   // 32px
-$fs-h2   = 1.5rem // 24px
+$fs-h2   = 1.5rem    // 24px
 $fs-h3   = 1.375rem  // 22px
 $fs-h4   = 1.125rem  // 18px
 $fs-h5   = $fs-15
@@ -64,7 +50,7 @@ $fs-p    = $fs-15
 $fs-code = $fs-13
 
 $border-card = 12px
-$border-block = 8px
+$border-block = 6px
 $border-image = 6px
 
 // 可以动态变化的属性

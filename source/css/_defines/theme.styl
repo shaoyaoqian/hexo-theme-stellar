@@ -1,46 +1,59 @@
-set_text_light()
-  --text-p0: $dark-title
-  --text-p1: mix($dark-text, $dark-background, 85)
-  --text-p2: mix($dark-text, $dark-background, 70)
-  --text-p3: mix($dark-text, $dark-background, 45)
-  --text-p4: mix($dark-text, $dark-background, 35)
-  --text-meta: mix($dark-text, $dark-background, 30)
-  --text-code: $dark-code
+$color-background-h = hue($color-background)
+$color-background-s = saturation($color-background)
+$color-background-l = lightness($color-background)
+
+$color-block-h = hue($color-block)
+$color-block-s = saturation($color-block)
+$color-block-l = lightness($color-block)
+
+$color-code-h = hue($color-code)
+$color-code-s = saturation($color-code)
+$color-code-l = lightness($color-code)
+
+$color-text-h = hue($color-text)
+$color-text-s = saturation($color-text)
+$color-text-l = lightness($color-text)
+
 set_text_dark()
-  --text-p0: $light-title
-  --text-p1: $light-text
-  --text-p2: mix($light-text, $light-background, 80)
-  --text-p3: mix($light-text, $light-background, 60)
-  --text-p4: mix($light-text, $light-background, 35)
-  --text-meta: mix($light-text, $light-background, 20)
-  --text-code: $light-code
+  --text-p0: hsl($color-text-h, $color-text-s, 0)
+  --text-p1: hsl($color-text-h, $color-text-s, $color-text-l)
+  --text-p2: hsl($color-text-h, $color-text-s, $color-text-l / 0.5 * 0.75)
+  --text-p3: hsl($color-text-h, $color-text-s, $color-text-l / 0.5 * 1.25)
+  --text-p4: hsl($color-text-h, $color-text-s, $color-text-l / 0.5 * 1.5)
+  --text-meta: hsl($color-text-h, $color-text-s, $color-text-l / 0.5 * 2)
+  --text-code: hsl($color-code-h, $color-code-s, $color-code-l * 1)
+
+set_text_light()
+  --text-p0: hsl($color-text-h, $color-text-s, 100)
+  --text-p1: hsl($color-text-h, $color-text-s, 100 - $color-text-l / 0.5 * 0.5)
+  --text-p2: hsl($color-text-h, $color-text-s, 100 - $color-text-l / 0.5 * 0.75)
+  --text-p3: hsl($color-text-h, $color-text-s, 100 - $color-text-l / 0.5 * 1.2)
+  --text-p4: hsl($color-text-h, $color-text-s, 100 - $color-text-l / 0.5 * 1.4)
+  --text-meta: hsl($color-text-h, $color-text-s, 100 - $color-text-l / 0.5 * 1.75)
+  --text-code: hsl($color-code-h, $color-code-s, $color-code-l * 1.25)
+
 :root
-  --site-bg: $light-background
-  --card: $light-card
-  --block: $light-block
-  --block-border: darken($light-block, 5)
-  --block-hover: darken($light-block, 2)
+  --site-bg: hsl($color-background-h, $color-background-s, 98)
+  --card: hsl($color-block-h, $color-block-s, 100)
+  --block: hsl($color-block-h, $color-block-s, 95)
+  --block-border: hsl($color-block-h, $color-block-s, 90)
+  --block-hover: hsl($color-block-h, $color-block-s, 92)
+  --block-lighten: hsl($color-block-h, $color-block-s, 100)
   set_text_dark()
-  --theme-highlight: darken($color-theme, 5)
-  --theme-bg: mix($color-theme, $light-card, 10)
+  --theme-bg2: $color-theme
   --theme-link: $color-link
 
 set_darkmode()
   :root
-    --site-bg: $dark-background
-    --card: $dark-card
-    --block: $dark-block
-    --block-border: lighten($dark-block, 6)
-    --block-hover: darken($dark-block, 4)
+    --site-bg: hsl($color-background-h, $color-background-s / 2, 16)
+    --card: hsl($color-block-h, $color-block-s * 1.5, 25)
+    --block: hsl($color-block-h, $color-block-s, 12)
+    --block-border: hsl($color-block-h, $color-block-s, 24)
+    --block-hover: hsl($color-block-h, $color-block-s, 9)
+    --block-lighten: hsl($color-block-h, $color-block-s, 30)
     set_text_light()
-    --theme-highlight: $color-theme
-    --theme-bg: mix($color-theme, $dark-card, 10)
     @media screen and (max-width: $device-mobile-max)
-      --site-bg: $dark-background-mobile
-      --card: darken($dark-card, 6)
-      --block: darken($dark-block, 4)
-      --block-border: lighten($dark-block, 2)
-      --block-hover: darken($dark-block,8)
+      --site-bg: black
 
 if hexo-config('style.darkmode') == 'auto'
   // 系统的dark模式
