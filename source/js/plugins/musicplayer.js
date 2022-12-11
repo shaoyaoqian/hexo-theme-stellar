@@ -100,7 +100,7 @@ const NeteaseMusicAPI = {
       theme: '#0899c4',
       loop: 'all',
       order: 'random',
-      preload: 'metadata',
+      preload: 'auto',
       volume: 0.7,
       mutex: true,
       listFolded: true,
@@ -130,7 +130,7 @@ const NeteaseMusicAPI = {
       theme: '#0899c4',
       loop: 'all',
       order: 'random',
-      preload: 'metadata',
+      preload: 'auto',
       volume: 0.7,
       mutex: true,
       listFolded: true,
@@ -176,3 +176,6 @@ $(function () {
     }
   }
 });
+
+
+

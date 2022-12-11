@@ -263,6 +263,7 @@ plugins:
     aplayer:
       css: https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.css
       js: https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.js
+    darkmode: /js/plugins/musicplayer.css
     assemble: /js/plugins/musicplayer.js
     netease: https://netease.pengfeima.cn  # 如果要从远程获取音乐资源，那么需要自行搭建api服务 
 
