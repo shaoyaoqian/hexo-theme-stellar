@@ -217,7 +217,7 @@ if (stellar.plugins.lazyload) {
 // musicplayer
 if (stellar.plugins.musicplayer.enable) {
   const els = document.getElementsByClassName('stellar-musicplayer');
-  if (els != undefined && els.length > 0){
+  if (els != undefined && els.length > 0) {
     // 加载alpayer的css文件和js文件
     stellar.loadCSS(stellar.plugins.musicplayer.aplayer.css);
     stellar.loadCSS(stellar.plugins.musicplayer.darkmode);
@@ -231,7 +231,7 @@ if (stellar.plugins.musicplayer.enable) {
       stellar.jQuery(() => {
         stellar.loadScript(stellar.plugins.musicplayer.assemble);
       })
-    } )
+    })
   }
 }
 
@@ -289,8 +289,8 @@ if (stellar.plugins.tile.enable) {
   if (tile_api != undefined) {
     stellar.loadCSS(stellar.plugins.tile.css);
     stellar.loadScript(stellar.plugins.tile.minigrid, { defer: true }).then(function () {
-    stellar.loadScript(stellar.plugins.tile.js, { defer: true });
-  })
+      stellar.loadScript(stellar.plugins.tile.js, { defer: true });
+    })
   }
 }
 
@@ -343,7 +343,7 @@ if (stellar.search.service) {
       stellar.loadScript('/js/search/local-search.js', { defer: true }).then(function () {
         var $inputArea = $("input#search-input");
         var $resultArea = document.querySelector("div#search-result");
-        $inputArea.focus(function() {
+        $inputArea.focus(function () {
           var path = stellar.search[stellar.search.service]?.path || '/search.json';
           if (!path.startsWith('/')) {
             path = '/' + path;
@@ -351,12 +351,12 @@ if (stellar.search.service) {
           const filter = $inputArea.attr('data-filter') || '';
           searchFunc(path, filter, 'search-input', 'search-result');
         });
-        $inputArea.keydown(function(e) {
+        $inputArea.keydown(function (e) {
           if (e.which == 13) {
             e.preventDefault();
           }
         });
-        var observer = new MutationObserver(function(mutationsList, observer) {
+        var observer = new MutationObserver(function (mutationsList, observer) {
           if (mutationsList.length == 1) {
             if (mutationsList[0].addedNodes.length) {
               $('.search-wrapper').removeClass('noresult');
@@ -377,7 +377,7 @@ if (stellar.plugins.heti) {
   stellar.loadCSS(stellar.plugins.heti.css);
   stellar.loadScript(stellar.plugins.heti.js, { defer: true }).then(function () {
     const heti = new Heti('.heti');
-    
+
     // Copied from heti.autoSpacing() without DOMContentLoaded.
     // https://github.com/sivan/heti/blob/eadee6a3b748b3b7924a9e7d5b395d4bce479c9a/js/heti-addon.js
     //
@@ -395,3 +395,41 @@ if (stellar.plugins.heti) {
     stellar.plugins.heti.enable = false;
   });
 }
+
+
+
+
+loadFancybox = (fn) => {
+  if (typeof  Fancybox === 'undefined') {
+    stellar.loadScript(stellar.plugins.fancybox.js).then(fn)
+  } else {
+    fn()
+  }
+}
+stellar.jQuery(() => {
+  stellar.loadScript("https://unpkg.com/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.js").then(()=>{
+    loadFancybox(() => {
+      $("#mygallery").justifiedGallery( 
+        {
+          lastRow : 'justify', 
+          rowHeight : 120, 
+          margins : 2,
+          waitThumbnailsLoad: false
+        }
+      ).on('jg.complete', function () {
+        // 绑定 Fancybox
+        // TODO: 选择器要修改。
+        Fancybox.bind("#mygallery img", {
+          groupAll: true,
+          hideScrollbar: false,
+          Thumbs: {
+            autoStart: false,
+          },
+          caption: function (fancybox, carousel, slide) {
+            return slide.$trigger.alt || null
+          }
+        });
+      });
+    });
+    });
+  });
