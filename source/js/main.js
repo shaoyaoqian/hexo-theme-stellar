@@ -283,6 +283,15 @@ if (stellar.plugins.swiper) {
   }
 }
 
+// tile
+if (stellar.plugins.tile.enable) {
+  const tile_api = document.getElementById('tile-api');
+  if (tile_api != undefined) {
+    stellar.loadCSS(stellar.plugins.tile.css);
+    stellar.loadScript(stellar.plugins.tile.js, { defer: true });
+  }
+}
+
 // preload
 if (stellar.plugins.preload) {
   if (stellar.plugins.preload.service == 'instant_page') {
