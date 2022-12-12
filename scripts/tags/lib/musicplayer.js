@@ -1,18 +1,11 @@
-// hexo.extend.tag.register('musicplayer', post_music_player, {ends: true});
-
-
-// scripts/tags/netease.js
-
-
-
 /**
- * swiper.js v1 | https://github.com/xaoxuu/hexo-theme-stellar/
+ * musicplayer.js v1 | https://github.com/xaoxuu/hexo-theme-stellar/
  * 格式与官方标签插件一致使用空格分隔，中括号内的是可选参数（中括号不需要写出来）
     
     {% musicplayer from:netease id:aplayer3 song_id:436147423,1309394503,26590191 %}
     {% endmusicplayer %}
     
-    {% musicplayer  from:netease id:aplayer song_id:436147423,1309394503,26590191 %}
+    {% musicplayer  from:local id:aplayer %}
     <!-- song -->
     url='https://raw.githubusercontent.com/user/images-1/main/music/1974443814.mp3'
     cover='https://raw.githubusercontent.com/user/images-1/main/music/1974443814.png'
@@ -37,7 +30,8 @@ module.exports = ctx => function(args, content) {
   }
   if (args.from == 'local'){
     var el = ''
-    // 此处通过分隔符分割，容错率
+    // 此处通过分隔符分割，
+    // TODO : 需要提供容错率，允许多余的空格
     var songlist = content.split("<!-- song -->");
     var el = '<div class=\"stellar-musicplayer\" id=\"' + args.id + '\" from=\"local\">';
     for (var i = 1; i < songlist.length; i++) {

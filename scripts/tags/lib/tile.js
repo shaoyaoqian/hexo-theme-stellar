@@ -16,16 +16,21 @@ module.exports = ctx => function(args, content) {
     let imgs = ctx.render.renderSync({text: content, engine: 'markdown'})
     imgs = imgs.match(/<img(.*?)src="(.*?)"(.*?)>/gi)
     if (imgs && imgs.length > 0) {
+      console.log(el);
       imgs.forEach((img, i) => {
-        img = img.replace('<img src', '<img no-lazy src')
-        el += '<div class="tile-photo">' + img + '</div>'
+        // img = img.replace('<img src', '<img no-lazy src')
+        el += '<div class="card" >' 
+           + img 
+           + '</div>'
       })
     }
   }
-  el += '<div class="tag-plugin gallery tile" id="tile-api">'
-  el += '<div class="tile-wrapper">'
+
+
+  // el += '<div class="tag-plugin gallery tile" id="tile-api">'
+  el += '<div class="cards" id="' + Math.random().toString(36).slice(2) + '">'
   slide()
   el += '</div>'
-  el += '</div>'
+  // el += '</div>'
   return el
 }

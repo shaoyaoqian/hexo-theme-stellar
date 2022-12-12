@@ -308,6 +308,7 @@ plugins:
     enable: true
     css: /js/plugins/tile.css
     js: /js/plugins/tile.js
+    minigrid: https://unpkg.com/minigrid@3.1.1/dist/minigrid.min.js
 
   # 赫蹏 (Heti) - 专为中文网页内容设计的排版样式增强
   # https://github.com/sivan/heti
