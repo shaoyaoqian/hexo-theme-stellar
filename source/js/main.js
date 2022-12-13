@@ -401,7 +401,8 @@ if (stellar.plugins.heti) {
 
 loadFancybox = (fn) => {
   if (typeof  Fancybox === 'undefined') {
-    stellar.loadScript(stellar.plugins.fancybox.js).then(fn)
+    stellar.loadCSS(stellar.plugins.fancybox.css);
+    stellar.loadScript(stellar.plugins.fancybox.js).then(fn);
   } else {
     fn()
   }
@@ -409,17 +410,17 @@ loadFancybox = (fn) => {
 stellar.jQuery(() => {
   stellar.loadScript("https://unpkg.com/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.js").then(()=>{
     loadFancybox(() => {
-      $("#mygallery").justifiedGallery( 
+      $("#mygallery2").justifiedGallery( 
         {
           lastRow : 'justify', 
           rowHeight : 120, 
           margins : 2,
-          waitThumbnailsLoad: false
+          // waitThumbnailsLoad: false
         }
       ).on('jg.complete', function () {
         // 绑定 Fancybox
         // TODO: 选择器要修改。
-        Fancybox.bind("#mygallery img", {
+        Fancybox.bind("img", {
           groupAll: true,
           hideScrollbar: false,
           Thumbs: {
