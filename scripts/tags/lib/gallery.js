@@ -18,8 +18,10 @@ module.exports = ctx => function(args, content) {
     imgs = imgs.match(/<img(.*?)src="(.*?)"(.*?)>/gi);
     if (imgs && imgs.length > 0) {
       imgs.forEach((img, i) => {
-        img = img.replace('<img src', '<img data-fancybox="' + id + '" src');
-        el += '<a data-fancybox="'+id+'" href="https://githubimages.pengfeima.cn/images/202211291217546.jpg">';
+        // img = img.replace('<img src', '<img src');
+        var caption = img.match(/\salt=['"](.*?)['"]/)[1];
+        var href = img.match(/\ssrc=['"](.*?)['"]/)[1];//.slice(5,-1);
+        el += '<a data-fancybox="' + id + '" data-caption="' + caption + '" href="' + href + '">';
         el += img;
         el += '</a>';
       })
