@@ -283,17 +283,6 @@ if (stellar.plugins.swiper) {
   }
 }
 
-// tile
-if (stellar.plugins.tile.enable) {
-  const tile_api = document.getElementsByClassName('cards');
-  if (tile_api != undefined) {
-    stellar.loadCSS(stellar.plugins.tile.css);
-    stellar.loadScript(stellar.plugins.tile.minigrid, { defer: true }).then(function () {
-      stellar.loadScript(stellar.plugins.tile.js, { defer: true });
-    })
-  }
-}
-
 // preload
 if (stellar.plugins.preload) {
   if (stellar.plugins.preload.service == 'instant_page') {
@@ -407,30 +396,40 @@ loadFancybox = (fn) => {
     fn()
   }
 }
+
+function justified_gallery(container){
+  $(container).justifiedGallery( 
+    {
+      lastRow : 'justify', 
+      rowHeight : 120, 
+      margins : 2,
+      // waitThumbnailsLoad: false
+    }
+  ).on('jg.complete', function () {
+    // 绑定 Fancybox
+    // TODO: 选择器要修改，吗？
+    Fancybox.bind(".justified-gallery img", {
+      groupAttr: true,
+      hideScrollbar: false,
+      // Thumbs: {
+        // autoStart: false,
+      // },
+      caption: function (fancybox, carousel, slide) {
+        return slide.$trigger.alt || null
+      }
+    });
+    console.log(".justified-gallery img");
+  });
+};
+
 stellar.jQuery(() => {
   stellar.loadScript("https://unpkg.com/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.js").then(()=>{
-    loadFancybox(() => {
-      $("#mygallery2").justifiedGallery( 
-        {
-          lastRow : 'justify', 
-          rowHeight : 120, 
-          margins : 2,
-          // waitThumbnailsLoad: false
-        }
-      ).on('jg.complete', function () {
-        // 绑定 Fancybox
-        // TODO: 选择器要修改。
-        Fancybox.bind("img", {
-          groupAll: true,
-          hideScrollbar: false,
-          Thumbs: {
-            autoStart: false,
-          },
-          caption: function (fancybox, carousel, slide) {
-            return slide.$trigger.alt || null
-          }
-        });
-      });
-    });
-    });
+    var els = document.getElementsByClassName('justified-gallery');
+    for (var i = 0; i<els.length; i++){
+      var el = els[i];
+      var id = "#" + el.getAttribute('id');
+      loadFancybox(()=>{justified_gallery(id)});
+    }
   });
+});
+
