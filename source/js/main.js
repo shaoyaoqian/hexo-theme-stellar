@@ -401,8 +401,10 @@ function justified_gallery(container){
   $(container).justifiedGallery( 
     {
       lastRow : 'justify', 
-      rowHeight : 120, 
-      margins : 2,
+      rowHeight : 150, 
+      captions: false,
+      margins : 4,
+      border: -1
       // waitThumbnailsLoad: false
     }
   ).on('jg.complete', function () {
@@ -415,8 +417,8 @@ function justified_gallery(container){
         // autoStart: false,
       // },
       caption: function (fancybox, carousel, slide) {
-        // return `<center>${slide.index + 1} / ${carousel.slides.length} <br /></center>` + slide.caption
-        return slide.caption | null
+        return `<center>${slide.index + 1} / ${carousel.slides.length} <br /></center>` + slide.caption
+        // return slide.caption | null
       }
     });
   });

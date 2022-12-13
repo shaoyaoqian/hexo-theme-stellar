@@ -10,7 +10,7 @@
 'use strict'
 
 module.exports = ctx => function(args, content) {
-  args = ctx.args.map(args, ['width', 'effect']);
+  args = ctx.args.map(args, ['captions', 'rowHeight', 'maxRowCount', 'margins', 'border', 'lastRow']);
   var el = '';
   var id = Math.random().toString(36).slice(2);
   function slide() {
@@ -27,7 +27,10 @@ module.exports = ctx => function(args, content) {
       })
     }
   }
-  el += '<div id="mygallery" class="justified-gallery">'
+  // 参数未处理
+  // ' ' + ctx.args.joinTags(args, ['width', 'effect']).join(' ')
+  // 赋予其唯一的ID
+  el += '<div id="'+id+'" class="justified-gallery">'
   slide()
   el += '</div>'
   return el
