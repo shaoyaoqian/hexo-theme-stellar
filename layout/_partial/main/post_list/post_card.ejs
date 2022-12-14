@@ -46,7 +46,11 @@ function div_default() {
 
   // 标题
   el += '<h2 class="post-title">';
+  el += '<a href="' + url_for(post.link || post.path) + '">';
+  // el += '<i class="fa-solid fa-book-open-cover"></i>';
+  // el += '&ensp;'
   el += (post.title || post.seo_title) ? (post.title || post.seo_title) : date(post.date, config.date_format);
+  el += '</a>';
   el += '</h2>';
 
   // 摘要
