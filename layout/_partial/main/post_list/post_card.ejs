@@ -57,7 +57,7 @@ function div_default() {
   el += '">';
   el += '<p>';
   if (post.excerpt) {
-    el += strip_html(post.excerpt);
+    el += post.excerpt;
   } else if (post.description) {
     el += post.description;
   } else if (post.content && theme.article.auto_excerpt > 0) {
