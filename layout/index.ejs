@@ -16,9 +16,9 @@ function layout_post_card(layout, post, content) {
   if (layout == 'post' && post.cover != undefined && post.poster != undefined) {
     layout += ' photo';
   }
-  el += '<div class="post-card ' + layout + ' ' + scrollreveal() + '" href="' + url_for(post.link || post.path) + '">';
+  el += '<a class="post-card ' + layout + ' ' + scrollreveal() + '" href="' + url_for(post.link || post.path) + '">';
   el += content;
-  el += '</div>';
+  el += '</a>';
   return el;
 }
 

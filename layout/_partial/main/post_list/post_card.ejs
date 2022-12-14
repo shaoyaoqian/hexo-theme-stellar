@@ -46,11 +46,11 @@ function div_default() {
 
   // 标题
   el += '<h2 class="post-title">';
-  el += '<a href="' + url_for(post.link || post.path) + '">';
+  el += '<div href="' + url_for(post.link || post.path) + '">';
   // el += '<i class="fa-solid fa-book-open-cover"></i>';
   // el += '&ensp;'
   el += (post.title || post.seo_title) ? (post.title || post.seo_title) : date(post.date, config.date_format);
-  el += '</a>';
+  el += '</div>';
   el += '</h2>';
 
   // 摘要
@@ -61,7 +61,7 @@ function div_default() {
   el += '">';
   el += '<p>';
   if (post.excerpt) {
-    el += post.excerpt;
+    el += post.excerpt.replace(/(<\/?a.*?>)/g, '');
   } else if (post.description) {
     el += post.description;
   } else if (post.content && theme.article.auto_excerpt > 0) {
