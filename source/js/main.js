@@ -95,6 +95,13 @@ const init = {
       $("article.md-text :header").each(function (idx, node) {
         segs.push(node)
       });
+      // 定位到激活的目录树（不如pjax体验好）
+      // const widgets = document.querySelector('.widgets')
+      // const e1 = document.querySelector('.doc-tree-link.active')
+      // const offsetTop = e1.getBoundingClientRect().top - widgets.getBoundingClientRect().top - 100
+      // if (offsetTop > 0) {
+      //   widgets.scrollBy({top: offsetTop, behavior: 'smooth'})
+      // }
       // 滚动
       $(document, window).scroll(function (e) {
         var scrollTop = $(this).scrollTop();
@@ -111,12 +118,24 @@ const init = {
           }
         }
         if (topSeg) {
-          $(".toc#toc a.toc-link").removeClass("active")
+          $("#data-toc a.toc-link").removeClass("active")
           var link = "#" + topSeg.attr("id")
           if (link != '#undefined') {
-            $('.toc#toc a.toc-link[href="' + encodeURI(link) + '"]').addClass("active")
+            const highlightItem = $('#data-toc a.toc-link[href="' + encodeURI(link) + '"]')
+            if (highlightItem.length > 0) {
+              highlightItem.addClass("active")
+              const e0 = document.querySelector('.widgets')
+              const e1 = document.querySelector('#data-toc a.toc-link[href="' + encodeURI(link) + '"]')
+              const offsetBottom = e1.getBoundingClientRect().bottom - e0.getBoundingClientRect().bottom + 100
+              const offsetTop = e1.getBoundingClientRect().top - e0.getBoundingClientRect().top - 64
+              if (offsetTop < 0) {
+                e0.scrollBy(0, offsetTop)
+              } else if (offsetBottom > 0) {
+                e0.scrollBy(0, offsetBottom)
+              }
+            }
           } else {
-            $('.toc#toc a.toc-link:first').addClass("active")
+            $('#data-toc a.toc-link:first').addClass("active")
           }
         }
       })
@@ -124,7 +143,7 @@ const init = {
   },
   sidebar: () => {
     stellar.jQuery(() => {
-      $(".toc#toc a.toc-link").click(function (e) {
+      $("#data-toc a.toc-link").click(function (e) {
         l_body.classList.remove("sidebar");
       });
     })
@@ -144,7 +163,7 @@ const init = {
    */
   registerTabsTag: function () {
     // Binding `nav-tabs` & `tab-content` by real time permalink changing.
-    document.querySelectorAll('.tabs ul.nav-tabs .tab').forEach(element => {
+    document.querySelectorAll('.tabs .nav-tabs .tab').forEach(element => {
       element.addEventListener('click', event => {
         event.preventDefault();
         // Prevent selected tab to select again.
@@ -331,6 +350,9 @@ if (stellar.search.service) {
     stellar.jQuery(() => {
       stellar.loadScript('/js/search/local-search.js', { defer: true }).then(function () {
         var $inputArea = $("input#search-input");
+        if ($inputArea.length == 0) {
+          return;
+        }
         var $resultArea = document.querySelector("div#search-result");
         $inputArea.focus(function () {
           var path = stellar.search[stellar.search.service]?.path || '/search.json';

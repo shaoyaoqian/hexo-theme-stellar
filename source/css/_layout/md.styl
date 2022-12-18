@@ -1,7 +1,6 @@
 .md-text
   max-width: 100%
-  padding: 0 1rem
-  margin-top: 1rem
+  padding: 1rem
   &:first-child
     margin-top: 0
   color: var(--text-p1)
@@ -21,7 +20,7 @@ h1.article-title
 
 .md-text.content
   position: relative
-  margin-bottom: 2rem
+  padding-bottom: 2rem
   overflow: hidden
   &.indent
     >p:not([class])
@@ -32,25 +31,25 @@ h1.article-title
     h1,h2,h3,h4,h5,h6
       text-align: center
     >h2:not([class])
-      align-self: center
-      border-bottom-style: dashed
-      border-bottom-color: $color-accent
+      border-bottom: none
   >:first-child:not(h1)
     margin-top: 0
   h1:not(:first-child)
     margin-top: 2em
-  h2:first-child
-    margin-top: 0
+  h2
+    margin-bottom: 1rem
+  h3,h4,h5,h6
+    margin-bottom: .5rem
   h2,h3,h4,h5,h6
     color: var(--text-p0)
     padding-top: 1rem
-    margin-bottom: .5rem
     line-height: 1.8
     &:hover
       a.headerlink:before
         opacity: 1
 
-
+.md-text.content:first-child
+  padding-top: 0
 
 .md-text
   ul:not(:last-child),
@@ -61,9 +60,13 @@ h1.article-title
     p,ul,ol
       font-size: $fs-14
       line-height: 1.5
+      code 
+        font-size: inherit
+        padding: 0
+        background: none
   p,blockquote,.tag-plugin,ul,ol,.highlight,table
     *
-      --gap-p: .5rem
+      --gap-p: var(--gap-p-compact)
   p,ul,ol
     margin-top: 'calc(%s - 4px)' % var(--gap-p)
     margin-bottom: 'calc(%s - 4px)' % var(--gap-p)
