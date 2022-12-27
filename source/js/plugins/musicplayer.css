@@ -1,6 +1,6 @@
 .aplayer .aplayer-lrc p { 
     text-align: center; }
-  .aplayer {
+/*   .aplayer {
     background: #121415;
   }
   .aplayer .aplayer-lrc:before {
@@ -24,4 +24,4 @@
   }
   .aplayer.aplayer-withlist .aplayer-info {
     border-bottom: 1px solid #292d2f; 
-  }
+  } */
