@@ -264,8 +264,8 @@ plugins:
     flyio: 
       js: https://unpkg.com/flyio/dist/fly.min.js
     aplayer:
-      css: https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.css
-      js: https://unpkg.com/aplayer@1.10.1/dist/APlayer.min.js
+      css: https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.css
+      js: https://cdn.staticfile.org/aplayer/1.10.1/APlayer.min.js
     darkmode: /js/plugins/musicplayer.css
     assemble: /js/plugins/musicplayer.js
     netease: https://netease.pengfeima.cn  # 如果要从远程获取音乐资源，那么需要自行搭建api服务 
@@ -303,10 +303,17 @@ plugins:
     css: https://unpkg.com/swiper@8.4.5/swiper-bundle.min.css
     js: https://unpkg.com/swiper@8.4.5/swiper-bundle.min.js
 
+  # font-awesome
+  # fontawesome:
+  #   css: https://cdn.staticfile.org/font-awesome/6.2.1/css/all.min.css
+
   # gallery
   gallery:
     enable: true
     thumbnail_suffix: _small
+    justified_gallery:
+      js: https://cdn.staticfile.org/justifiedGallery/3.8.1/js/jquery.justifiedGallery.min.js
+      css: https://cdn.staticfile.org/justifiedGallery/3.8.1/css/justifiedGallery.min.css
   #   css: /js/plugins/tile.css
   #   js: /js/plugins/tile.js
   #   minigrid: https://unpkg.com/minigrid@3.1.1/dist/minigrid.min.js

@@ -446,14 +446,20 @@ function justified_gallery(container){
   });
 };
 
-stellar.jQuery(() => {
-  stellar.loadScript("https://unpkg.com/justifiedGallery@3.8.1/dist/js/jquery.justifiedGallery.js").then(()=>{
-    var els = document.getElementsByClassName('justified-gallery');
-    for (var i = 0; i<els.length; i++){
-      var el = els[i];
-      var id = "#" + el.getAttribute('id');
-      loadFancybox(()=>{justified_gallery(id)});
-    }
+// stellar.loadCSS(stellar.plugins.fontawesome.css);
+
+
+if (stellar.plugins.gallery.enable) {
+  stellar.loadCSS(stellar.plugins.gallery.justified_gallery.css);
+  stellar.jQuery(() => {
+    stellar.loadScript(stellar.plugins.gallery.justified_gallery.js).then(()=>{
+      var els = document.getElementsByClassName('justified-gallery');
+      for (var i = 0; i<els.length; i++){
+        var el = els[i];
+        var id = "#" + el.getAttribute('id');
+        loadFancybox(()=>{justified_gallery(id)});
+      }
+    });
   });
-});
+}
 
