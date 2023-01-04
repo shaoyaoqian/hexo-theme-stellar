@@ -91,7 +91,7 @@ const StellarTimeline = {
         let date = new Date(item.created_at);
         cell += '<p>' + date.toString().replace(/\sGMT([^.]*)/i, "") + '</p>';
         cell += '</div>';
-        cell += '<div class="body">';
+        cell += '<div class="body" style="width: 100%">';
         if (!hide.includes('title')) {
           cell += '<p class="title">';
           cell += '<a href="' + item.html_url + '" target="_blank" rel="external nofollow noopener noreferrer">';

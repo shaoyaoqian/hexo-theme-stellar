@@ -61,7 +61,7 @@ const weibojs = {
         cell += '</div>';
         cell += '<p>' + item.created_at + '</p>';
         cell += '</div>';
-        cell += '<div class="body" width=auto>';
+        cell += '<div class="body" style="width: 100%">';
         cell += item.content;
         cell += '<div class="footer">';
         cell += '<div class="flex left">';
@@ -80,6 +80,14 @@ const weibojs = {
         cell += '</div>';
         // 右下角结束
         $(el).append(cell);
+        var els = $(el).find('.justified-gallery');
+        console.log(els)
+        for (var j = 0; j<els.length; j++){
+          var elj = els[j];
+          var id = "#" + elj.getAttribute('id');
+          console.log(id)
+          loadFancybox(()=>{justified_gallery(id)});
+        }
       });
     }, function() {
       $(el).find('.loading-wrap svg').remove();
