@@ -422,8 +422,8 @@ loadFancybox = (fn) => {
 function justified_gallery(container){
   $(container).justifiedGallery( 
     {
-      lastRow : 'center', 
-      rowHeight : 150, 
+      lastRow : 'left', 
+      // rowHeight : 150, 
       captions: false,
       margins : 4,
       border: -1
