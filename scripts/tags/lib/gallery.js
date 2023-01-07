@@ -24,13 +24,13 @@ module.exports = ctx => function(args, content) {
         var caption = img.match(/\salt=['"](.*?)['"]/)[1];
         var href = img.match(/\ssrc=['"](.*?)['"]/)[1];//.slice(5,-1);
         el += '<a data-fancybox="' + id + '" data-caption="' + caption + '" href="' + href + '">';
-        console.log(ctx.theme.config.plugins.gallery.thumbnail_suffix);
+        // console.log(ctx.theme.config.plugins.gallery.thumbnail_suffix);
         if (ctx.theme.config.plugins.gallery.thumbnail_suffix) {
           img = img.replace('" alt="', ctx.theme.config.plugins.gallery.thumbnail_suffix + '" alt="');
         }
         el += img;
         el += '</a>';
-        console.log(img)
+        // console.log(img)
       })
     }
   }
