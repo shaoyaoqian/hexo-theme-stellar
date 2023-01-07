@@ -48,11 +48,15 @@ const weibojs = {
     weibojs.requestAPI(cfg.api, function(data) {
       $(el).find('.loading-wrap').remove();
       const arr = data.tweets || [];
-      const limit = el.getAttribute('limit');
+      var begin = el.getAttribute('begin');
+      var limit = el.getAttribute('limit');
+      console.log("Rendering tweets...");
+      if (!begin) { begin = 0;}
+      if (!limit) { limit = 10;}
+      console.log(begin);
+      console.log(limit);
       arr.forEach((item, i) => {
-        if (limit && i >= limit) {
-          return;
-        }
+        if (i>= begin && i < begin+limit) {
         var cell = '<div class="timenode" index="' + i + '">';
         cell += '<div class="header">';
         cell += '<div class="user-info">';
@@ -88,12 +92,11 @@ const weibojs = {
         // 右下角结束
         $(el).append(cell);
         var els = $(el).find('.justified-gallery');
-        console.log(els)
         for (var j = 0; j<els.length; j++){
           var elj = els[j];
           var id = "#" + elj.getAttribute('id');
-          console.log(id)
           loadFancybox(()=>{justified_gallery(id)});
+        }
         }
       });
     }, function() {
