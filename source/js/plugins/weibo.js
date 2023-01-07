@@ -65,11 +65,11 @@ const weibojs = {
         cell += '</div>';
         cell += '<p>' + item.created_at + '</p>';
         cell += '</div>';
-        cell += '<div class="body" style="width: 100%">';
+        cell += '<div class="body tweet" style="width: 100%">';
         cell += item.content;
         // 转发来的微博
         if (item.retweeted) {
-          cell += '<div class="retweeted-body">';
+          cell += '<div class="retweeted">';
           cell += item.retweeted.content;
           cell += '<br>转发自<a style="text-decoration:none;" target="_blank" href="'+item.retweeted.url+'">'+item.retweeted.user.nick_name+'</a>&ensp;&ensp;'+item.retweeted.created_at;
           cell += '</div>';
