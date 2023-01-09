@@ -37,7 +37,7 @@ module.exports = ctx => function(args, content) {
   // 参数未处理
   // ' ' + ctx.args.joinTags(args, ['width', 'effect']).join(' ')
   // 赋予其唯一的ID
-  el += '<div id="'+id+'" class="justified-gallery">'
+  el += '<div id="'+id+'" class="justified-gallery gallery">'
   slide()
   el += '</div>'
   return el

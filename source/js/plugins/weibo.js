@@ -61,6 +61,7 @@ const weibojs = {
       arr.forEach((item, i) => {
         if (i >= begin && i < end) {
           var cell = '<div class="timenode" index="' + i + '">';
+          // 微博用户和时间
           cell += '<div class="header">';
           cell += '<div class="user-info">';
           cell += '<img src="' + (data.user.avatar_hd || cfg.avatar) + '" onerror="javascript:this.src=\'' + cfg.avatar + '\';">';
@@ -68,6 +69,7 @@ const weibojs = {
           cell += '</div>';
           cell += '<p>' + item.created_at + '</p>';
           cell += '</div>';
+          // 微博内容
           cell += '<div class="body tweet" style="width: 100%">';
           cell += item.content;
           // 转发来的微博
@@ -77,6 +79,7 @@ const weibojs = {
             cell += '<br>转发自<a style="text-decoration:none;" target="_blank" href="' + item.retweeted.url + '">' + item.retweeted.user.nick_name + '</a>&ensp;&ensp;' + item.retweeted.created_at;
             cell += '</div>';
           }
+          // 右下角的转发、评论、点赞图标
           cell += '<div class="footer">';
           cell += '<div class="flex left">';
           cell += '</div>';
@@ -92,9 +95,9 @@ const weibojs = {
           cell += '</a>';
           cell += '</div>';
           cell += '</div>';
-          // 右下角结束
+          // 渲染微博相册
           $(el).append(cell);
-          var els = $(el).find('.justified-gallery');
+          var els = $(el).find('.weibo-gallery');
           for (var j = 0; j < els.length; j++) {
             var elj = els[j];
             var id = "#" + elj.getAttribute('id');

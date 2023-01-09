@@ -409,7 +409,7 @@ if (stellar.plugins.heti) {
 
 
 
-
+// 显示相册
 loadFancybox = (fn) => {
   if (typeof  Fancybox === 'undefined') {
     stellar.loadCSS(stellar.plugins.fancybox.css);
@@ -423,43 +423,31 @@ function justified_gallery(container){
   $(container).justifiedGallery( 
     {
       lastRow : 'left', 
-      // rowHeight : 150, 
       captions: false,
-      margins : 4,
+      margins : 3,
       border: -1
-      // waitThumbnailsLoad: false
     }
   ).on('jg.complete', function () {
-    // 绑定 Fancybox
-    // TODO: 选择器要修改，吗？
     Fancybox.bind(container+" a", {
-      // groupAttr: true,
-      // hideScrollbar: false,
-      // Thumbs: {
-        // autoStart: false,
-      // },
       caption: function (fancybox, carousel, slide) {
-        return `<center>${slide.index + 1} / ${carousel.slides.length} <br /></center>` + slide.caption
-        // return slide.caption | null
+        // return `<center>${slide.index + 1} / ${carousel.slides.length} <br></center>` + slide.caption
+        return slide.caption
       }
     });
   });
 };
 
-// stellar.loadCSS(stellar.plugins.fontawesome.css);
 
 
-if (stellar.plugins.gallery.enable) {
-  stellar.loadCSS(stellar.plugins.gallery.justified_gallery.css);
-  stellar.jQuery(() => {
-    stellar.loadScript(stellar.plugins.gallery.justified_gallery.js).then(()=>{
-      var els = document.getElementsByClassName('justified-gallery');
-      for (var i = 0; i<els.length; i++){
-        var el = els[i];
-        var id = "#" + el.getAttribute('id');
-        loadFancybox(()=>{justified_gallery(id)});
-      }
-    });
+stellar.loadCSS(stellar.plugins.gallery.justified_gallery.css);
+stellar.jQuery(() => {
+  stellar.loadScript(stellar.plugins.gallery.justified_gallery.js).then(()=>{
+    var els = document.getElementsByClassName('gallery');
+    for (var i = 0; i<els.length; i++){
+      var el = els[i];
+      var id = "#" + el.getAttribute('id');
+      loadFancybox(()=>{justified_gallery(id)});
+    }
   });
-}
+});
 
