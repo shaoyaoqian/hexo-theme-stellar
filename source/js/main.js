@@ -442,7 +442,7 @@ function justified_gallery(container){
 stellar.loadCSS(stellar.plugins.gallery.justified_gallery.css);
 stellar.jQuery(() => {
   stellar.loadScript(stellar.plugins.gallery.justified_gallery.js).then(()=>{
-    var els = document.getElementsByClassName('gallery');
+    var els = document.getElementsByClassName('tile-gallery');
     for (var i = 0; i<els.length; i++){
       var el = els[i];
       var id = "#" + el.getAttribute('id');
