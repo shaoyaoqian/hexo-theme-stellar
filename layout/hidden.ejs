@@ -1,0 +1,33 @@
+<%
+if (page.menu_id == undefined) {
+  page.menu_id = 'post';
+}
+if (page.header == undefined) {
+  page.header = 'auto';
+}
+function layoutTitle() {
+  const title = page.h1 || page.title;
+  if (title && title.length > 0) {
+    return '<h1 class="article-title"><span>' + title + '</span></h1>';
+  } else {
+    return '';
+  }
+}
+let post = page;
+let heti = '';
+if (theme.plugins.heti && theme.plugins.heti.enable) {
+  heti = ' heti';
+}
+let content = post.content;
+if (theme.sensitive_words == undefined) {
+}
+else {
+  for (let key of Object.keys(theme.sensitive_words)) {
+      let value = theme.sensitive_words[key];
+      content = content.replaceAll(key, value);
+  }
+}
+%>
+<article class='md-text content<%- heti %> <%- post.layout %><%- post.indent ? ' indent' : '' %><%- scrollreveal() %>'>
+<%- post.content %>
+</article>

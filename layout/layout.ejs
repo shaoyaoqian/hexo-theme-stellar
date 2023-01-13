@@ -4,14 +4,20 @@
 <body>
   <%- partial('_partial/cover/index') %>
   <div class='l_body' id='start'>
-    <aside class='l_left' layout='<%- page.layout %>'>
-    <%- partial('_partial/sidebar/index') %>
-    </aside>
+    <% if (page.layout!='hidden'){ %>
+      <aside class='l_left' layout='<%- page.layout %>'>
+      <%- partial('_partial/sidebar/index') %>
+      </aside>
+    <% } %>
     <div class='l_main<%- page.content ? "" : " list" %>'>
-      <%- partial('_partial/main/header/index') %>
-      <%- body %>
-      <%- partial('_partial/main/footer') %>
-      <%- partial('_partial/menubtn') %>
+      <% if (page.layout=='hidden'){ %>
+        <%- body %>
+      <% } else { %>
+        <%- partial('_partial/main/header/index') %>
+        <%- body %>
+        <%- partial('_partial/main/footer') %>
+        <%- partial('_partial/menubtn') %>
+      <% } %>
     </div>
   </div>
   <div class='scripts'>
@@ -19,3 +25,6 @@
   </div>
 </body>
 </html>
+
+
+
