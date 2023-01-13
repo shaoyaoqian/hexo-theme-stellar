@@ -2,27 +2,33 @@
 <html lang='<%- page.lang %>'>
 <%- partial('_partial/head') %>
 <body>
-  <%- partial('_partial/cover/index') %>
-  <div class='l_body' id='start'>
-    <% if (page.layout!='hidden'){ %>
-      <aside class='l_left' layout='<%- page.layout %>'>
-      <%- partial('_partial/sidebar/index') %>
-      </aside>
-    <% } %>
-    <div class='l_main<%- page.content ? "" : " list" %>'>
-      <% if (page.layout=='hidden'){ %>
-        <%- body %>
-      <% } else { %>
-        <%- partial('_partial/main/header/index') %>
-        <%- body %>
-        <%- partial('_partial/main/footer') %>
-        <%- partial('_partial/menubtn') %>
+  <div id="pageContent">
+    <%- partial('_partial/cover/index') %>
+    <div class='l_body' id='start'>
+      <% if (page.layout!='hidden'){ %>
+        <aside class='l_left' layout='<%- page.layout %>'>
+        <%- partial('_partial/sidebar/index') %>
+        </aside>
       <% } %>
+      <div class='l_main<%- page.content ? "" : " list" %>'>
+        <% if (page.layout=='hidden'){ %>
+          <%- body %>
+        <% } else { %>
+          <%- partial('_partial/main/header/index') %>
+          <%- body %>
+          <%- partial('_partial/main/footer') %>
+          <%- partial('_partial/menubtn') %>
+        <% } %>
+      </div>
+    </div>
+    <div class='scripts'>
+      <%- partial('_partial/scripts/index') %>
     </div>
   </div>
-  <div class='scripts'>
-    <%- partial('_partial/scripts/index') %>
-  </div>
+  <!-- <div id="global-player"></div> -->
+  <div id="aplayer-YLkZhSZI" class="aplayer aplayer-tag-marker meting-tag-marker"
+  data-id="453927771" data-server="netease" data-type="song" data-mode="circulation" data-autoplay="false" data-fixed="true" data-mutex="true" data-listmaxheight="340px" data-preload="auto" data-theme="#ad7a86"
+></div>
 </body>
 </html>
 

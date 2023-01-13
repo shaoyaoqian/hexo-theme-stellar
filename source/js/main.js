@@ -451,3 +451,43 @@ stellar.jQuery(() => {
   });
 });
 
+
+console.log("hello world!");
+
+
+stellar.loadCSS(stellar.plugins.musicplayer.aplayer.css);
+stellar.loadCSS(stellar.plugins.musicplayer.darkmode);
+stellar.loadScript(stellar.plugins.musicplayer.aplayer.js).then(()=>{
+  const ap = new APlayer({
+    container: document.getElementById('global-player'),
+    fixed: true,
+    lrcType: 1,
+    // lrcType: 3,
+    audio: [{
+        name: '喜欢',
+        artist: '张悬',
+        url: 'https://raw.githubusercontent.com/shaoyaoqian/images-1/main/music/453927771.mp3',
+        cover: 'https://raw.githubusercontent.com/shaoyaoqian/images-1/main/music/453927771.png',
+        lrc: 'https://raw.githubusercontent.com/shaoyaoqian/images-1/main/music/453927771.lrc',
+    },{
+      name: 'The White Lady',
+      artist: 'Christopher Larkin',
+      url: 'https://raw.githubusercontent.com/shaoyaoqian/images-1/main/music/1309394503.mp3',
+      cover: 'https://raw.githubusercontent.com/shaoyaoqian/images-1/main/music/1309394503.png',
+      lrc: 'https://raw.githubusercontent.com/shaoyaoqian/images-1/main/music/1309394503.lrc',
+    }
+  ]
+  });
+})
+
+
+
+stellar.jQuery(() => {
+  stellar.loadScript('https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js').then(()=>{
+    $(document).pjax('a[target!=_blank]', '#pageContent', {fragment: '#pageContent'});
+  }
+  )
+});
+
+
+
