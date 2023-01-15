@@ -148,6 +148,26 @@ comments:
     #   - https://unpkg.com/@waline/emojis@1.1.0/tieba
     #   - https://unpkg.com/@waline/emojis@1.1.0/tw-emoji
     #   - https://unpkg.com/@waline/emojis@1.1.0/bmoji
+    # 设置自己的图床服务，替换默认的 Base 64 编码嵌入（有体积大小限制），在评论中上传图片更加方便
+    # imageUploader:
+      # 适配了兰空图床V1、V2版本
+      # 以兰空图床V1为例，下列填写内容为：
+      # fileName: file
+      # tokenName: Authorization
+      # url: https://xxxxxx/api/v1/upload
+      # token: Bearer xxxxxxxxxxxxxx
+      # resp: data.links.url
+      # 以兰空图床V2为例，下列填写内容为：
+      # fileName: image
+      # tokenName: token
+      # url: https://xxxxxx/api/upload
+      # token: xxxxxxxxxxxxxx
+      # resp: data.url
+    #   fileName: # 根据版本二选一
+    #   tokenName: # 根据版本二选一
+    #   api: # 图床 api 地址
+    #   token: # 图床验证
+    #   resp: # 图片地址返回值的字段
   
   # Artalk
   # https://artalk.js.org/
@@ -383,7 +403,7 @@ style:
     loading: 正在加载
     error: 加载失败，请稍后重试。
   gradient: # https://webgradients.com/
-    start: 'linear-gradient(to right, #92fe9d 0%, #00c9ff 50%, #92fe9d 100%)'
+    start: 'linear-gradient(to right, hsl(215, 95%, 64%), hsl(195, 95%, 60%), hsl(165, 95%, 56%), hsl(165, 95%, 56%), hsl(195 95% 60%), hsl(215, 95%, 64%))'
     search: 'linear-gradient(to right, #04F3FF, #08FFC6, #DDF730, #FFBD19, #FF1FE0, #C418FF, #04F3FF)'
 
 default:
