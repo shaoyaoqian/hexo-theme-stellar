@@ -23,14 +23,17 @@ module.exports = ctx => function(args, content) {
         img = img.replace('<img src', '<img no-lazy src');
         var caption = img.match(/\salt=['"](.*?)['"]/)[1];
         var href = img.match(/\ssrc=['"](.*?)['"]/)[1];//.slice(5,-1);
-        el += '<a data-fancybox="' + id + '" data-caption="' + caption + '" href="' + href + '">';
-        // console.log(ctx.theme.config.plugins.gallery.thumbnail_suffix);
-        if (ctx.theme.config.plugins.gallery.thumbnail_suffix) {
-          img = img.replace('" alt="', ctx.theme.config.plugins.gallery.thumbnail_suffix + '" alt="');
+        // HACK: 对于图片 `https://githubimages.pengfeima.cn/images/${filename}.${suffix}` 都有略缩图
+        //               `https://githubimages.pengfeima.cn/images/compressed/${filename}webp`
+        var href_ = href.match(/https\:\/\/githubimages\.pengfeima\.cn\/images\/[0-9,\-]+\./);
+        if (href_){
+          var filename = href_[0].split('/')[4];
+          var href_thumbnail = `https://githubimages.pengfeima.cn/images/compressed/${filename}webp`
+          img = img.replace(href, href_thumbnail);
         }
+        el += '<a data-fancybox="' + id + '" data-caption="' + caption + '" href="' + href + '">';
         el += img;
         el += '</a>';
-        // console.log(img)
       })
     }
   }
