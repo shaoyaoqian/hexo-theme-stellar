@@ -14,22 +14,18 @@ var tag_index = 0
 module.exports = ctx => function(args) {
   args = ctx.args.map(args, ['color'], ['text', 'href'])
   if (args.color == null) {
-    const default_color = ctx.theme.config.tag_plugins.tag?.default_color
-    if (default_color) {
-      args.color = default_color
-    } else {
       args.color = tag_colors[tag_index]
       tag_index += 1
       if (tag_index >= tag_colors.length) {
         tag_index = 0
       }
     }
-  }
   var el = ''
-  el += '<a class="tag-plugin tag"'
+  el += '<a class="tag-plugin tag" data-fancybox data-type="iframe" data-preload="true"'
   el += ' ' + ctx.args.joinTags(args, ['color', 'href']).join(' ')
   el += '>'
   el += args.text
   el += '</a>'
+  console.log(el);
   return el
 }
