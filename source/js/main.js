@@ -499,17 +499,17 @@ stellar.jQuery(() => {
     var words = ['snow','winter','pine','christmas','year','decision', 'trip','mother','santa','mountain'];
     $('#0x1e8af9929').justifiedGallery(
       {
+        rowHeight:300,
         lastRow : 'left', 
         captions: false,
-        margins : 3,
+        margins : 9,
         border: -1
       }
     )
-    for (var i = 0; i < 20; i++) {
+    for (var i = 0; i < 100; i++) {
       var img_size = parseInt(300+Math.random()*600) + 'x' + parseInt(300+Math.random()*300);
-      $('#0x1e8af9929').append('<a>' +
-          '<img src="https://dummyimage.com/'+ img_size +'/000/ffffff.png" />' + 
-          '</a>');
+      var href = "https://dummyimage.com/" + img_size + "/0f59a4/fff"
+      $('#0x1e8af9929').append('<a><img src="'+ href +'" /></a>');
       $('#0x1e8af9929').justifiedGallery('norewind');    
     }
     $(window).scroll(function() {
@@ -581,11 +581,11 @@ const InfiniteScrollGallery = {
     InfiniteScrollGallery.requestAPI(cfg.api, function(data) {
       $(el).find('.loading-wrap').remove();
       // words for random pictures
-      console.log(cfg.id);
+      console.log("#" + cfg.id);
       console.log(data);
       var words = ['snow','winter','pine','christmas','year','decision', 'trip','mother','santa','mountain'];
       // 初始化
-      $(cfg.id).justifiedGallery(
+      $("#" + cfg.id).justifiedGallery(
         {
           lastRow : 'left', 
           captions: false,
@@ -597,9 +597,9 @@ const InfiniteScrollGallery = {
       for (var i = 0; i < 20; i++) {
         var img_size = parseInt(300+Math.random()*600) + 'x' + parseInt(300+Math.random()*300);
         var img = '<a><img src="https://dummyimage.com/'+ img_size +'/000/ffffff.png" /></a>';
-        $(cfg.id).append(img);
+        $("#" + cfg.id).append(img);
         console.log(img);
-        $(cfg.id).justifiedGallery('norewind');    
+        $("#" + cfg.id).justifiedGallery('norewind');    
       }
       // 挑选出图片
       var pictures_list = [];
@@ -610,7 +610,7 @@ const InfiniteScrollGallery = {
         temp_name = item.name.split('.');
 
         console.log(temp_name);
-        if (temp_name[temp_name.length-1] == 'webp'){
+        if (temp_name[temp_name.length-1] == 'jpg' || temp_name[temp_name.length-1] == 'webp'){
           pictures_list.push(item.name)
         }
       });
@@ -628,11 +628,11 @@ const InfiniteScrollGallery = {
               if (picture) {
               var href = cfg.cdn + picture;
               var img = `<a><img src=${href} /></a>`;
-              $(cfg.id).append(img);
+              $("#" + cfg.id).append(img);
               console.log(img);
             }
           }
-          $(cfg.id).justifiedGallery('norewind');
+          $("#" + cfg.id).justifiedGallery('norewind');
         }
       });
 
@@ -652,7 +652,22 @@ stellar.jQuery(() => {
     var cfg = new Object();
     cfg.api = "https://api.github.com/repos/shaoyaoqian/images-1/contents/images/compressed";
     cfg.cdn = "https://githubimages.pengfeima.cn/images/compressed/";
-    cfg.id  = "#0xje8cj39d0e";
-    InfiniteScrollGallery.layoutDiv(cfg);
+    cfg.id  = "0xje8cj39d0e";
+    if (document.getElementById(cfg.id)) {
+      InfiniteScrollGallery.layoutDiv(cfg);
+    }
+  });
+});
+
+stellar.loadCSS(stellar.plugins.gallery.justified_gallery.css);
+stellar.jQuery(() => {
+  stellar.loadScript(stellar.plugins.gallery.justified_gallery.js).then(()=>{
+    var cfg = new Object();
+    cfg.api = "https://api.github.com/repos/mfmpf/weibo-jhm/contents/output/picture?ref=output";
+    cfg.cdn = "https://raw.githubusercontent.com/mfmpf/weibo-jhm/output/output/picture/";
+    cfg.id  = "0xjd804kca3i";
+    if (document.getElementById(cfg.id)) {
+      InfiniteScrollGallery.layoutDiv(cfg);
+    }
   });
 });
