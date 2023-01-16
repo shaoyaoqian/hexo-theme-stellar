@@ -481,13 +481,14 @@ console.log("hello world!");
 // })
 
 
-
-stellar.jQuery(() => {
-  stellar.loadScript('https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js').then(()=>{
-    $(document).pjax('a[target!=_blank]', '#pageContent', {fragment: '#pageContent'});
-  }
-  )
-});
+// PJAX，跳转界面时继续播放音乐
+// Errors: 很多地方都有问题
+// stellar.jQuery(() => {
+//   stellar.loadScript('https://cdn.bootcss.com/jquery.pjax/2.0.1/jquery.pjax.min.js').then(()=>{
+//     $(document).pjax('a[target!=_blank]', '#pageContent', {fragment: '#pageContent'});
+//   }
+//   )
+// });
 
 
 
@@ -496,7 +497,14 @@ stellar.jQuery(() => {
   stellar.loadScript(stellar.plugins.gallery.justified_gallery.js).then(()=>{
     // words for random pictures
     var words = ['snow','winter','pine','christmas','year','decision', 'trip','mother','santa','mountain'];
-    $('#0x1e8af9929').justifiedGallery({rowHeight:120})
+    $('#0x1e8af9929').justifiedGallery(
+      {
+        lastRow : 'left', 
+        captions: false,
+        margins : 3,
+        border: -1
+      }
+    )
     for (var i = 0; i < 20; i++) {
       var img_size = parseInt(300+Math.random()*600) + 'x' + parseInt(300+Math.random()*300);
       $('#0x1e8af9929').append('<a>' +
@@ -521,14 +529,3 @@ stellar.jQuery(() => {
   });
 });
 
-
-function justified_gallery(container){
-  $(container).justifiedGallery( 
-    {
-      lastRow : 'left', 
-      captions: false,
-      margins : 3,
-      border: -1
-    }
-  )
-};
