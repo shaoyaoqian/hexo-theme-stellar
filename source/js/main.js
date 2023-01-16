@@ -455,30 +455,30 @@ stellar.jQuery(() => {
 console.log("hello world!");
 
 
-stellar.loadCSS(stellar.plugins.musicplayer.aplayer.css);
-stellar.loadCSS(stellar.plugins.musicplayer.darkmode);
-stellar.loadScript(stellar.plugins.musicplayer.aplayer.js).then(()=>{
-  const ap = new APlayer({
-    container: document.getElementById('global-player'),
-    fixed: true,
-    lrcType: 1,
-    // lrcType: 3,
-    audio: [{
-        name: '喜欢',
-        artist: '张悬',
-        url: 'https://raw.githubusercontent.com/shaoyaoqian/images-1/main/music/453927771.mp3',
-        cover: 'https://raw.githubusercontent.com/shaoyaoqian/images-1/main/music/453927771.png',
-        lrc: 'https://raw.githubusercontent.com/shaoyaoqian/images-1/main/music/453927771.lrc',
-    },{
-      name: 'The White Lady',
-      artist: 'Christopher Larkin',
-      url: 'https://raw.githubusercontent.com/shaoyaoqian/images-1/main/music/1309394503.mp3',
-      cover: 'https://raw.githubusercontent.com/shaoyaoqian/images-1/main/music/1309394503.png',
-      lrc: 'https://raw.githubusercontent.com/shaoyaoqian/images-1/main/music/1309394503.lrc',
-    }
-  ]
-  });
-})
+// stellar.loadCSS(stellar.plugins.musicplayer.aplayer.css);
+// stellar.loadCSS(stellar.plugins.musicplayer.darkmode);
+// stellar.loadScript(stellar.plugins.musicplayer.aplayer.js).then(()=>{
+//   const ap = new APlayer({
+//     container: document.getElementById('global-player'),
+//     fixed: true,
+//     lrcType: 1,
+//     // lrcType: 3,
+//     audio: [{
+//         name: '喜欢',
+//         artist: '张悬',
+//         url: 'https://raw.githubusercontent.com/shaoyaoqian/images-1/main/music/453927771.mp3',
+//         cover: 'https://raw.githubusercontent.com/shaoyaoqian/images-1/main/music/453927771.png',
+//         lrc: 'https://raw.githubusercontent.com/shaoyaoqian/images-1/main/music/453927771.lrc',
+//     },{
+//       name: 'The White Lady',
+//       artist: 'Christopher Larkin',
+//       url: 'https://raw.githubusercontent.com/shaoyaoqian/images-1/main/music/1309394503.mp3',
+//       cover: 'https://raw.githubusercontent.com/shaoyaoqian/images-1/main/music/1309394503.png',
+//       lrc: 'https://raw.githubusercontent.com/shaoyaoqian/images-1/main/music/1309394503.lrc',
+//     }
+//   ]
+//   });
+// })
 
 
 
@@ -491,3 +491,44 @@ stellar.jQuery(() => {
 
 
 
+stellar.loadCSS(stellar.plugins.gallery.justified_gallery.css);
+stellar.jQuery(() => {
+  stellar.loadScript(stellar.plugins.gallery.justified_gallery.js).then(()=>{
+    // words for random pictures
+    var words = ['snow','winter','pine','christmas','year','decision', 'trip','mother','santa','mountain'];
+    $('#0x1e8af9929').justifiedGallery({rowHeight:120})
+    for (var i = 0; i < 20; i++) {
+      var img_size = parseInt(300+Math.random()*600) + 'x' + parseInt(300+Math.random()*300);
+      $('#0x1e8af9929').append('<a>' +
+          '<img src="https://dummyimage.com/'+ img_size +'/000/ffffff.png" />' + 
+          '</a>');
+      $('#0x1e8af9929').justifiedGallery('norewind');    
+    }
+    $(window).scroll(function() {
+      if($(window).scrollTop() + $(window).height() +1 > $(document).height()) {
+        for (var i = 0; i < 10; i++) {
+          var random_param = words[Math.floor(Math.random()*words.length)]
+          random_param = random_param + ',' + words[Math.floor(Math.random()*words.length)];
+          random_param = random_param + ',' + words[Math.floor(Math.random()*words.length)];
+          random_param = random_param + ',' + words[Math.floor(Math.random()*words.length)];
+          var href = '"https://source.unsplash.com/random?' + random_param +'"';
+          var img = `<a><img src=${href} /></a>`;
+          $('#0x1e8af9929').append(img);
+        }
+        $('#0x1e8af9929').justifiedGallery('norewind');
+      }
+    });
+  });
+});
+
+
+function justified_gallery(container){
+  $(container).justifiedGallery( 
+    {
+      lastRow : 'left', 
+      captions: false,
+      margins : 3,
+      border: -1
+    }
+  )
+};
