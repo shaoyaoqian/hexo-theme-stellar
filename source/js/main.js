@@ -513,7 +513,6 @@ stellar.jQuery(() => {
       var colors = ['a61b29','0f59a4','0f95b0','f1939c'];
       var colors_name = ['苋菜红','飞燕草蓝','胆矾蓝','春梅红'];
       var color_index = Math.floor(Math.random()*colors.length)
-      color_index = 0;
       var color = colors[color_index];
       var color_name = colors_name[color_index];
       var href = `https://dummyimage.com/${img_size}/${color}/ffffff`;
