@@ -510,8 +510,10 @@ stellar.jQuery(() => {
     )
     for (var i = 0; i < 100; i++) {
       var img_size = parseInt(300+Math.random()*600) + 'x' + parseInt(300+Math.random()*300);
-      var colors = ['a61b29','0f59a4','0f95b0','f1939c'];
-      var colors_name = ['苋菜红','飞燕草蓝','胆矾蓝','春梅红'];
+      // var colors = ['a61b29','0f59a4','0f95b0','f1939c','7a7374','15559a','2775b6'];
+      // var colors_name = ['苋菜红','飞燕草蓝','胆矾蓝','春梅红','锌灰','海涛蓝','景泰蓝'];
+      var colors = ['0f59a4','15559a','2775b6','346c9c','2376b7','11659a'];
+      var colors_name = ['飞燕草蓝','海涛蓝','景泰蓝','海军蓝','花青','搪瓷蓝'];
       var color_index = Math.floor(Math.random()*colors.length)
       var color = colors[color_index];
       var color_name = colors_name[color_index];
