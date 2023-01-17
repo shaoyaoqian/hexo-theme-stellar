@@ -499,17 +499,28 @@ stellar.jQuery(() => {
     var words = ['snow','winter','pine','christmas','year','decision', 'trip','mother','santa','mountain'];
     $('#0x1e8af9929').justifiedGallery(
       {
-        rowHeight:300,
-        lastRow : 'left', 
-        captions: false,
+        rowHeight:200,
+        maxRowsCount:200,
+        lastRow:'nojustify',
+        captions:true,
+        randomize: false,
         margins : 9,
         border: -1
       }
     )
     for (var i = 0; i < 100; i++) {
       var img_size = parseInt(300+Math.random()*600) + 'x' + parseInt(300+Math.random()*300);
-      var href = "https://dummyimage.com/" + img_size + "/0f59a4/fff"
-      $('#0x1e8af9929').append('<a><img src="'+ href +'" /></a>');
+      var colors = ['a61b29','0f59a4','0f95b0','f1939c'];
+      var colors_name = ['苋菜红','飞燕草蓝','胆矾蓝','春梅红'];
+      var color_index = Math.floor(Math.random()*colors.length)
+      color_index = 0;
+      var color = colors[color_index];
+      var color_name = colors_name[color_index];
+      var href = `https://dummyimage.com/${img_size}/${color}/ffffff`;
+      var title = color_name;
+      var caption = `<div class="jg-caption"><span style="color:#${color}">${title}</span></div>`;
+      var img = `<a target="_blank" href="${href}"><img src="${href}" alt="${title}"/>${caption}</a>`;
+      $('#0x1e8af9929').append(img);
       $('#0x1e8af9929').justifiedGallery('norewind');    
     }
     $(window).scroll(function() {
@@ -519,8 +530,10 @@ stellar.jQuery(() => {
           random_param = random_param + ',' + words[Math.floor(Math.random()*words.length)];
           random_param = random_param + ',' + words[Math.floor(Math.random()*words.length)];
           random_param = random_param + ',' + words[Math.floor(Math.random()*words.length)];
-          var href = '"https://source.unsplash.com/random?' + random_param +'"';
-          var img = `<a><img src=${href} /></a>`;
+          var href = 'https://source.unsplash.com/random?' + random_param;
+          var title = random_param;
+          var caption = `<div class="jg-caption">Keywords:&ensp;<span style="color:#a61b29">${title}</span></div>`;
+          var img = `<a target="_blank" href="${href}"><img src="${href}" alt="${title}"/>${caption}</a>`;
           $('#0x1e8af9929').append(img);
         }
         $('#0x1e8af9929').justifiedGallery('norewind');
