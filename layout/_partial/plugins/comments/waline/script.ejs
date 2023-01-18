@@ -11,6 +11,7 @@
       Waline.init(Object.assign(<%- JSON.stringify(theme.comments.waline) %>, {
         el: '#waline_container',
         path: path,
+        pageview: true,
         <% if(!!theme.comments.waline.imageUploader?.api){ %>
           imageUploader: function(file) {
             let headers = new Headers();
