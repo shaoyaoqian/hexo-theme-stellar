@@ -84,14 +84,15 @@ function layoutDiv() {
             el += ' onclick="util.copy(&quot;copy-link&quot;, &quot;' + __('message.copied') + '&quot;)"';
           }
           el += '>';
+          
           if (item == 'wechat') {
-            el += '<img src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.4/social/b32ef3da1162a.svg"/>';
+            el += '<center><i class="fa-brands fa-weixin fa-fw"></i></center>';
           } else if (item == 'weibo') {
-            el += '<img src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.4/social/80c07e4dbb303.svg"/>';
+            el += '<center><i class="fa-brands fa-weibo fa-fw"></i></center>';
           } else if (item == 'email') {
-            el += '<img src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.4/social/a1b00e20f425d.svg"/>';
+            el += '<center><i class="fa-regular fa-envelope"></i></center>';
           } else if (item == 'link') {
-            el += '<img src="https://gcore.jsdelivr.net/gh/cdn-x/placeholder@1.0.4/social/8411ed322ced6.svg"/>';
+            el += '<center><i class="fa-solid fa-link"></i></center>';
           }
           el += '</a>';
         }
