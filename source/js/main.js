@@ -639,7 +639,7 @@ const InfiniteScrollGallery = {
             console.log(picture);
             if (picture) {
               var href = cfg.cdn + picture;
-              var img = `<a><img src=${href} /></a>`;
+              var img = `<a><img src="${href}" /></a>`;
               $("#" + cfg.id).append(img);
               console.log(img);
             }
@@ -664,6 +664,8 @@ stellar.jQuery(() => {
     var cfg = new Object();
     cfg.api = "https://api.github.com/repos/shaoyaoqian/images-1/contents/images/compressed";
     cfg.cdn = "https://githubimages.pengfeima.cn/images/compressed/";
+    cfg.api = "https://api.github.com/repos/shaoyaoqian/images-1/contents/必应壁纸/";
+    cfg.cdn = "https://githubimages.pengfeima.cn/必应壁纸/";
     cfg.id  = "0xje8cj39d0e";
     if (document.getElementById(cfg.id)) {
       InfiniteScrollGallery.layoutDiv(cfg);
@@ -683,3 +685,44 @@ stellar.jQuery(() => {
     }
   });
 });
+
+
+
+// - <script defer="" src=""></script>
+// - <link media="all" onload="media='all'" rel="stylesheet" href=>
+// - <script defer="" src="https://fastly.jsdelivr.net/npm/shikwasa@2.1/dist/shikwasa.chapter.min.js"></script>
+// - <link media="all" onload="media='all'" rel="stylesheet" href="https://fastly.jsdelivr.net/npm/shikwasa@2.1/dist/shikwasa.chapter.min.css">
+
+
+
+
+if (document.getElementsByClassName('hero-player').length){
+  stellar.loadCSS("https://fastly.jsdelivr.net/npm/shikwasa@2.2/dist/style.css");
+  // stellar.loadCSS("https://fastly.jsdelivr.net/npm/shikwasa@2.1/dist/shikwasa.chapter.min.css")
+  // stellar.loadScript("https://fastly.jsdelivr.net/npm/shikwasa@2.1/dist/shikwasa.chapter.min.js")
+  stellar.jQuery(() => {
+    stellar.loadScript("https://fastly.jsdelivr.net/npm/shikwasa@2.2/dist/shikwasa.min.js").then(()=>{
+      const audio = {
+        title: '喜欢',
+        artist: '张悬',
+        src: 'https://raw.githubusercontent.com/shaoyaoqian/images-1/main/music/453927771.mp3',
+        cover: 'https://raw.githubusercontent.com/shaoyaoqian/images-1/main/music/453927771.png',
+      }
+      const player = new Shikwasa.Player({
+        audio,
+        themeColor: '#0f59a4',
+        theme: 'dark',
+        container: document.querySelector('.hero-player'),
+        preload: 'metadata',
+        fixed: {
+          type: 'static',
+        },
+      })
+    });
+  });
+
+  if (player) {
+    player.el.setAttribute('data-style', 0)
+  }
+
+}
