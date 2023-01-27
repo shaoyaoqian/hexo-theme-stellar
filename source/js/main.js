@@ -707,7 +707,13 @@ if (document.getElementsByClassName('hero-player').length){
         artist: '张悬',
         src: 'https://raw.githubusercontent.com/shaoyaoqian/images-1/main/music/453927771.mp3',
         cover: 'https://raw.githubusercontent.com/shaoyaoqian/images-1/main/music/453927771.png',
+        // chapters: [
+        //   { title:'Chapter 1', startTime:0, endTime:10 }, // the first chapter
+        //   { title:'Chapter 2', startTime:10, endTime:20 }, // the second chatper
+        // ],
       }
+
+      // Shikwasa.Player.use(shikwasa.Chapter)
       const player = new Shikwasa.Player({
         audio,
         themeColor: '#0f59a4',
@@ -720,9 +726,5 @@ if (document.getElementsByClassName('hero-player').length){
       })
     });
   });
-
-  if (player) {
-    player.el.setAttribute('data-style', 0)
-  }
 
 }
