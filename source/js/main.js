@@ -677,15 +677,14 @@ stellar.loadCSS(stellar.plugins.gallery.justified_gallery.css);
 stellar.jQuery(() => {
   stellar.loadScript(stellar.plugins.gallery.justified_gallery.js).then(()=>{
     var cfg = new Object();
-    cfg.api = "https://api.github.com/repos/mfmpf/weibo-jhm/contents/output/picture?ref=output";
-    cfg.cdn = "https://raw.githubusercontent.com/mfmpf/weibo-jhm/output/output/picture/";
+    cfg.api = "https://api.github.com/repos/mfmpf/weibo-mpf/contents/output/picture?ref=output";
+    cfg.cdn = "https://raw.githubusercontent.com/mfmpf/weibo-mpf/output/output/picture/";
     cfg.id  = "0xjd804kca3i";
     if (document.getElementById(cfg.id)) {
       InfiniteScrollGallery.layoutDiv(cfg);
     }
   });
 });
-
 
 
 // - <script defer="" src=""></script>
