@@ -19,7 +19,19 @@
     utils.css(ctx.fancybox.css);
     utils.js(ctx.fancybox.js, { defer: true }).then(function () {
       Fancybox.bind(selector, {
+        Carousel: {
+          transition: "slide",
+        },
+        autoFocus: false,
+        // Disable image zoom animation on opening and closing
+        Images: {
+          zoom: false,
+        },
+        // Custom CSS transition on opening
+        showClass: "f-fadeIn",
         hideScrollbar: false,
+        autoFocus: false,
+        animated: false,
         Thumbs: {
           autoStart: false,
         },
