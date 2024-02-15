@@ -41,12 +41,12 @@ html += `<html lang="${page.lang}">`
   html += partial('_partial/head')
   html += `<body>`
     html += site_background
-    html += partial('_partial/cover/index')
+    // html += partial('_partial/cover/index')
     html += `<div class="l_body s:aa ${page_type} ${article_type}" id="start" layout="${page.layout}" ${indent ? 'text-indent' : ''}>`
       html += `<aside class="l_left">`
-        html += `<div class="leftbar-container${theme.style.leftbar?.blur ? ' leftbar-blur' : ''}">`
-          html += partial('_partial/sidebar/index_leftbar')
-        html += `</div>`
+           html += `<div class="leftbar-container${theme.style.leftbar?.blur ? ' leftbar-blur' : ''}">`
+        //   html += partial('_partial/sidebar/index_leftbar')
+           html += `</div>`
       html += `</aside>`
       html += `<div class="l_main" id="main">`
         html += partial('_partial/sidebar/logo', {where: 'main'})
