@@ -52,25 +52,25 @@ function layoutDiv() {
     }
   }
   var el = ''
-  el += `<header class="header${where == 'main' ? ' mobile-only' : ''}">`
-  el += `<div class="logo-wrap">`
-  if (logo.icon) {
-    el += `<div class="icon"><img no-lazy class="icon" src="${md_text(logo.icon)}"></div>`
-  } else if (md_text(logo.avatar)) {
-    el += `<a class="avatar" href="${url_for(md_link(logo.avatar) || '/')}">`
-    if (theme.style.animated_avatar.animate) {
-      el += `<div class="bg" style="opacity:0;background-image:url(${theme.style.animated_avatar.background});"></div>`
-    }
-    el += `<img no-lazy class="avatar" src="${md_text(logo.avatar)}">`
-    el += `</a>`
-  }
-  const main = md_text(logo.title)
-  if (main) {
-    let url = md_link(logo.title)
-    el += layoutTitle(main, url, md_text(logo.subtitle))
-  }
-  el += `</div>`
-  el += '</header>'
+  // el += `<header class="header${where == 'main' ? ' mobile-only' : ''}">`
+  // el += `<div class="logo-wrap">`
+  // if (logo.icon) {
+  //   el += `<div class="icon"><img no-lazy class="icon" src="${md_text(logo.icon)}"></div>`
+  // } else if (md_text(logo.avatar)) {
+  //   el += `<a class="avatar" href="${url_for(md_link(logo.avatar) || '/')}">`
+  //   if (theme.style.animated_avatar.animate) {
+  //     el += `<div class="bg" style="opacity:0;background-image:url(${theme.style.animated_avatar.background});"></div>`
+  //   }
+  //   el += `<img no-lazy class="avatar" src="${md_text(logo.avatar)}">`
+  //   el += `</a>`
+  // }
+  // const main = md_text(logo.title)
+  // if (main) {
+  //   let url = md_link(logo.title)
+  //   el += layoutTitle(main, url, md_text(logo.subtitle))
+  // }
+  // el += `</div>`
+  // el += '</header>'
   return el
 }
 %>

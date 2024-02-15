@@ -11,7 +11,7 @@
   position: sticky
   position: -webkit-sticky
   // 侧边栏容器宽度
-  --width-sidebar: calc(var(--gap-margin) * 2 + var(--gap-padding) * 2 + var(--side-content-width))
+  // --width-sidebar: calc(var(--gap-margin) * 2 + var(--gap-padding) * 2 + var(--side-content-width))
   width: var(--width-sidebar)
 
 .l_body .l_left
@@ -61,19 +61,19 @@
   .l_body
     padding: 0
     display: block
-    .l_left
-      position: fixed
-      transform: translateX(-320px)
-      transition: transform .38s ease-out
-      margin: 0
-      left: 8px
-      box-shadow: $boxshadow-card-float
-      z-index: 10
+    // .l_left
+    //   position: fixed
+    //   transform: translateX(-320px)
+    //   transition: transform .38s ease-out
+    //   margin: 0
+    //   left: 8px
+    //   box-shadow: $boxshadow-card-float
+    //   z-index: 10
     .l_main
       max-width: 100%
   .l_body[leftbar]
-    .l_left
-      transform: translateX(0px)
+    // .l_left
+    //   transform: translateX(0px)
     .main-mask
       opacity 1
       pointer-events: inherit
