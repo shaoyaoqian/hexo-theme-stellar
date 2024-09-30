@@ -1,9 +1,14 @@
-<% if (['all', page.layout].includes(theme.plugins.tianli_gpt.field)) { %>
-  <script>
-    let tianliGPT_postSelector = 'article.content';
-    let tianliGPT_key = `<%= theme.plugins.tianli_gpt?.api %>`;
-    let tianliGPT_typingAnimate = `<%= theme.plugins.tianli_gpt?.typingAnimate %>`;
-    let tianliGPT_wordLimit = `<%= theme.plugins.tianli_gpt?.limit %>`;
-  </script>
+<% 
+const { field } = theme.plugins.tianli_gpt;
+const matchesField = field === 'all' || field === page.layout || (field === 'wiki' && page.wiki) || (field === 'topic' && page.topic);
+if (matchesField) { %>
   <script defer src="<%- theme.plugins.tianli_gpt?.js %>"></script>
+  <script defer>
+    window.addEventListener('DOMContentLoaded', (event) => {
+      new ChucklePostAI(Object.assign({
+        el: 'article.content',
+        css: `/css/_plugins/tianli_gpt`
+      }, JSON.parse(`<%- JSON.stringify(theme.plugins.tianli_gpt) %>`)))
+    });
+  </script>
 <% } %>

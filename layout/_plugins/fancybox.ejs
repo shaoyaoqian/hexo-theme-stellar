@@ -10,7 +10,7 @@
   }
   var needFancybox = document.querySelectorAll(selector).length !== 0;
   if (!needFancybox) {
-    const els = document.getElementsByClassName('stellar-memos-api');
+    const els = document.getElementsByClassName('ds-memos');
     if (els != undefined && els.length > 0) {
       needFancybox = true;
     }
@@ -36,7 +36,7 @@
           autoStart: false,
         },
         caption: (fancybox, slide) => {
-          return slide.triggerEl.alt || null
+          return slide.triggerEl.alt || slide.triggerEl.dataset.caption || null
         }
       });
     })
