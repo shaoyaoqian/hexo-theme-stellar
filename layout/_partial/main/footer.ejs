@@ -3,7 +3,6 @@ const content = theme.footer.content?.replace('{author.name}', (config.author ||
 function layoutDiv() {
   var el = ''
   el += `<footer class="page-footer${scrollreveal(' ')} footnote">`
-  el += '<hr>'
   // sitemap
   if (theme.footer.sitemap && Object.keys(theme.footer.sitemap).length > 0) {
     el += '<div class="sitemap">'
