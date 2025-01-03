@@ -107,20 +107,6 @@ function layoutDiv() {
   const top = layoutBreadcrumb()
   var style = ``
   var el = ``
-  el += `<div class="article banner top">`
-  if (banner.url?.length > 0) {
-    el += `<img class="bg" src="${banner.url}">`
-    if (banner.color) {
-      style += ' style="--text-banner:' + banner.color + '"'
-    }
-  }
-  el += `
-  <div class="content"${style}>
-    ${top}
-    ${bottom}
-  </div>
-  `
-  el += `</div>`
   return el
 }
 %>
