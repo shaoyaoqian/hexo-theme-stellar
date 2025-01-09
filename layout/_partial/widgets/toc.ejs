@@ -13,10 +13,10 @@ function layoutTocBody() {
 
 function layoutTocHeader(title) {
   var el = ''
-  el += `<div class="widget-header dis-select">`
-  el += `<span class="name">${title || __("meta.toc")}</span>`
-  el += `<a class="cap-action" onclick="sidebar.toggleTOC()" >${icon('default:rightbar')}</a>`
-  el += `</div>`
+  //el += `<div class="widget-header dis-select">`
+  //el += `<span class="name">${title || __("meta.toc")}</span>`
+  //el += `<a class="cap-action" onclick="sidebar.toggleTOC()" >${icon('default:rightbar')}</a>`
+  //el += `</div>`
   return el
 }
 
@@ -50,11 +50,11 @@ function layoutDiv(fallback) {
     el += `</div>`
   }
   el += `<div class="widget-footer">`
-  el += editBtn
-  el += `<a class="top" onclick="util.scrollTop()">`
-  el += icon('default:upup')
-  el += `<span>${__('btn.top')}</span>`
-  el += `</a>`
+  // el += editBtn
+  // el += `<a class="top" onclick="util.scrollTop()">`
+  // el += icon('default:upup')
+  // el += `<span>${__('btn.top')}</span>`
+  // el += `</a>`
   if (theme.comments.service && theme.comments.service.length > 0) {
     if (page.comments == undefined || page.comments != false) {
       el += `<a class="buttom" onclick="util.scrollComment()">`
